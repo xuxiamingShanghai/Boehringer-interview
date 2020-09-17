@@ -1,0 +1,21 @@
+<ion-content>
+  <div class="container">
+<!--    <div>{{scannedCode}}</div>-->
+    <div *ngIf="checkStep(1)">
+      <ion-button expand="block" color="dark" (click)="getCode()">SCAN QRCODE</ion-button>
+    </div>
+    <div *ngIf="checkStep(2)">
+      <ion-button expand="block" color="dark" (click)="checkServer()">Check Server Status</ion-button>
+      <div class="server-status">
+        Server: {{ statusChecked ? serverStatus ? 'OK' : 'DOWN' :'' }}
+      </div>
+      <ion-button expand="block" color="dark" (click)="takePhoto()" [disabled]="!serverStatus">take photo & upload it</ion-button>
+    </div>
+
+    <div *ngIf="checkStep(3)">
+      <p>Your uploaded picture:</p>
+      <img [src]="photo" />
+    </div>
+  </div>
+
+</ion-content>

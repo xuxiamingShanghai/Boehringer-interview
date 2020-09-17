@@ -4,15 +4,14 @@ import { ServerService } from '../services/server.service';
 import { ScannerService } from '../services/scanner.service';
 
 import { PhotoService } from '../services/photo.service';
-// import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-task',
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.scss'],
 })
-export class Tab1Page implements OnInit {
+export class TaskComponent implements OnInit {
+
   step: Number = 1;
   scannedCode = '';
 
@@ -21,11 +20,11 @@ export class Tab1Page implements OnInit {
 
   photo = null;
   constructor(
-    // private barcodeScanner: BarcodeScanner,
-    private scannerService: ScannerService,
-    private configService: ConfigService,
-    private serverService: ServerService,
-    public photoService: PhotoService) {}
+      private scannerService: ScannerService,
+      private configService: ConfigService,
+      private serverService: ServerService,
+      public photoService: PhotoService
+  ) {}
 
   async getCode() {
     this.scannedCode = await this.scannerService.scanCode();
@@ -45,14 +44,14 @@ export class Tab1Page implements OnInit {
 
   checkServer() {
     this.serverService.checkServerStatus().then(
-      msg => {
-        this.serverStatus = true;
-        this.statusChecked = true;
-      },
-      error => {
-        this.serverStatus = false;
-        this.statusChecked = true;
-      }
+        msg => {
+          this.serverStatus = true;
+          this.statusChecked = true;
+        },
+        error => {
+          this.serverStatus = false;
+          this.statusChecked = true;
+        }
     );
 
   }
@@ -62,7 +61,10 @@ export class Tab1Page implements OnInit {
     if (this.photo) {
       this.step = 3;
     }
+  }
 
+  checkStep(step: number) {
+    return this.step === step;
   }
   ngOnInit() {
 

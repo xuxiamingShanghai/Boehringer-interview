@@ -7,6 +7,10 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-plugin-advanced-http": {
+      "OKHTTP_VERSION": "3.10.0",
+      "PACKAGE_NAME": "io.ionic.photogallery"
+    },
     "cordova-plugin-camera": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "io.ionic.photogallery"
@@ -35,10 +39,6 @@
     },
     "phonegap-plugin-barcodescanner": {
       "ANDROID_SUPPORT_V4_VERSION": "27.+",
-      "PACKAGE_NAME": "io.ionic.photogallery"
-    },
-    "cordova-plugin-advanced-http": {
-      "OKHTTP_VERSION": "3.10.0",
       "PACKAGE_NAME": "io.ionic.photogallery"
     }
   },

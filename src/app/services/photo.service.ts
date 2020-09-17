@@ -41,10 +41,7 @@ export class PhotoService {
 
     uploadedFileName = await this.uploadPicture(this.photo.data);
     if (uploadedFileName) {
-      downloadFile = await this.downloadPicture(uploadedFileName);
-      this.photo = {
-        data: downloadFile
-      };
+      downloadFile = endpoints.GET_PICTURE + uploadedFileName;
       return downloadFile;
     }
 
@@ -72,25 +69,6 @@ export class PhotoService {
         console.log(response);
       });
     return fileName;
-  }
-
-  async downloadPicture(fileName: string) {
-    let downloadFile;
-    const path = `${this.configService.getServerURL()}${endpoints.GET_PICTURE.replace('<image>', fileName)}`;
-
-    const options: any = {
-      method: 'get'
-    };
-    await this.http.sendRequest(path, options)
-      .then(response => {
-        console.log(response.data);
-        downloadFile = response.data;
-      })
-      .catch(response => {
-        this.alertService.presentAlert('Failed to download picture');
-        console.log(response);
-      });
-    return downloadFile;
   }
 
 }
